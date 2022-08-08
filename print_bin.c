@@ -1,5 +1,5 @@
 #include <stdarg.h>
-#include "holberton.h"
+#include "main.h"
 
 
 void convert_and_print(unsigned int num, int *count);
