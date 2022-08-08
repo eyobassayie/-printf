@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
-#include "holberton.h"
+#include "main.h"
 
 /**
  * find_correct_func - finding the format for _printf
