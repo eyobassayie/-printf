@@ -1,42 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
 #include "main.h"
 
 /**
- * print_octal - Prints the numeric representation of a number in octal base
- * @list: List of all the arguments passed to the program
- * Return: Number of symbols printed to stdout
+ * print_octal - prints octal
+ * @o: octal to be printed
+ * Return: size
  */
 
-int print_octal(va_list list)
+int print_octal(va_list o)
 {
-	unsigned int num;
-	int len;
-	char *octal_rep;
-	char *rev_str;
-
-	num = va_arg(list, unsigned int);
-
-	if (num == 0)
-		return (_putchar('0'));
-	if (num < 1)
-		return (-1);
-	len = base_len(num, 8);
-
-	octal_rep = malloc(sizeof(char) * len + 1);
-	if (octal_rep == NULL)
-		return (-1);
-	for (len = 0; num > 0; len++)
-	{
-		octal_rep[len] = (num % 8) + 48;
-		num = num / 8;
-
-	}
-	octal_rep[len] = '\0';
-	rev_str = rev_string(octal_rep);
-	if (rev_str == NULL)
-		return (-1);
-
-	write_base(rev_str);
-	free(octal_rep);
-	free(rev_str);
-	return (len);
+unsigned int len, pow, j, digit, n, num;
+int count = 0;
+n = va_arg(o, unsigned int);
+if (n != 0)
+{
+num = n;
+len = 0;
+while (num != 0)
+{
+num /= 8;
+len++;
+}
+pow = 1;
+for (j = 1; j <= len - 1; j++)
+pow *= 8;
+for (j = 1; j <= len; j++)
+{
+digit = n / pow;
+_putchar(digit + '0');
+count++;
+n -= (digit * pow);
+pow /= 8;
+}
+}
+else
+{
+_putchar('0');
+return (1);
+}
+return (count);
 }
